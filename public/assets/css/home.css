@@ -198,7 +198,7 @@ form .from-to {
     border-right: 1px solid lightslategray;
 }
 
-form .from-to input {
+form .from-to select {
     /* display: block; */
     width: 100%;
     height: 2rem;
