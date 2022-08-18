@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('airports', function (Blueprint $table) {
-            $table->integer('code');
-            $table->string('name');
-            $table->string('province');
-            $table->string('city');
+        Schema::create('airplanes', function (Blueprint $table) {
+            $table->id();
+            $table->string('type');
+            $table->smallInteger('total_seats');
+            $table->foreignIdFor(\App\Models\AirlineModel::class, 'airline_code');
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('airports');
+        Schema::dropIfExists('airplanes');
     }
 };

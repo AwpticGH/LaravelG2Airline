@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use app\Models\UserModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -11,24 +12,26 @@ use Illuminate\Support\Str;
  */
 class UserFactory extends Factory
 {
+    protected $model = UserModel::class;
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
+        $gender = rand(0,1) ? 'Male' : 'Female';
+        $female = rand(0,1) ? 'Mrs' : 'Miss';
+        $title = $gender == 'Male' ? 'Mr' : $female;
         return [
-            'Name' => fake()->name(),
-            'Email' => fake()->safeEmail(),
-            'Username' => fake()->userName(),
-            'Password' => Hash::make(Str::random(4, 16)), // password
-            $gender = rand(0,1) ? 'Male' : 'Female',
-            'Gender' => $gender,
-            $female = rand(0,1) ? 'Mrs' : 'Miss',
-            $title = $gender == 'Male' ? 'Mr' : $female,
-            'Title' => $title,
-            'DateOfBirth' => fake()->date(),
+            'name' => fake()->name(),
+            'email' => fake()->safeEmail(),
+            'username' => fake()->userName(),
+            'password' => Hash::make(Str::random(4, 16)), // password
+            'gender' => $gender,
+            'title' => $title,
+            'date_of_birth' => fake()->date(),
+            'phone_number' => fake()->phoneNumber(),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
         ];
