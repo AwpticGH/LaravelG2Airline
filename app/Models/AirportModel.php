@@ -11,7 +11,8 @@ class AirportModel extends Model
     use HasFactory;
     protected static function newFactory()
     {
-        return AirportFactory::class;
+        return AirportFactory::new();
     }
+    public $timestamps = false;
     protected $table = 'airports';
 }

@@ -11,7 +11,8 @@ class AirplaneModel extends Model
     use HasFactory;
     protected static function newFactory()
     {
-        return AirplaneFactory::class;
+        return AirplaneFactory::new();
     }
+    public $timestamps = false;
     protected $table = 'airplanes';
 }

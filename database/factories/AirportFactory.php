@@ -19,10 +19,7 @@ class AirportFactory extends Factory
     public function definition()
     {
         return [
-            'code' => ['CGK', 'UPG'],
-            'name' => ['Bandara Soekarno-Hatta', 'Bandara Sultah Hasanuddin'],
-            'province' => ['Banten', 'Sulawesi Selatan'],
-            'city' => ['Tanggerang', 'Makassar']
+            //
         ];
     }
 }

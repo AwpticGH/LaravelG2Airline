@@ -11,8 +11,8 @@ class RouteModel extends Model
     use HasFactory;
     protected static function newFactory()
     {
-        return RouteFactory::class;
+        return RouteFactory::new();
     }
-
+    public $timestamps = false;
     protected $table = 'routes';
 }
