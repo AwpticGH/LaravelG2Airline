@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('flights', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignIdFor(\App\Models\AirplaneModel::class, 'airplane_id');
+            $table->foreignIdFor(\App\Models\RouteModel::class, 'route_id');
+            $table->dateTime('depart_date_time');
         });
     }
 

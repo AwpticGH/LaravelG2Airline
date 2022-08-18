@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('airports', function (Blueprint $table) {
-            $table->integer('code');
+            $table->id();
+            $table->string('code', '3');
             $table->string('name');
             $table->string('province');
             $table->string('city');

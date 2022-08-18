@@ -3,6 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\AirlineModel;
+use App\Models\AirplaneModel;
+use App\Models\AirportModel;
+use App\Models\RouteModel;
+use Database\Factories\AirportFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -22,6 +27,9 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '6281234567890'
         ]);
 
-//        \App\Models\UserModel::factory(10)->create();
+        AirlineModel::factory()->make();
+        AirplaneModel::factory()->count(10)->make();
+        AirportModel::factory()->make();
+        RouteModel::factory()->make();
     }
 }

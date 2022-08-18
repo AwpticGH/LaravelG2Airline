@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('type');
             $table->smallInteger('total_seats');
-            $table->foreignIdFor(\App\Models\AirlineModel::class, 'airline_code');
+            $table->foreignIdFor(\App\Models\AirlineModel::class, 'airline_id');
         });
     }
 

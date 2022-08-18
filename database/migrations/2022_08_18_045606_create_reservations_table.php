@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignIdFor(\App\Models\FlightModel::class, 'flight_id');
+            $table->foreignIdFor(\App\Models\UserModel::class, 'user_id');
+            $table->boolean('paid');
+            $table->boolean('active');
         });
     }
 
