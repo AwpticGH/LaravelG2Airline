@@ -16,4 +16,19 @@ class RouteModel extends Model
     public $timestamps = false;
     public $incrementing = false;
     protected $table = 'routes';
+
+    public function from()
+    {
+        return $this->belongsTo(AirportModel::class, 'departure_id', 'id');
+    }
+
+    public function to()
+    {
+        return $this->belongsTo(AirportModel::class, 'destination_id', 'id');
+    }
+
+    public function flights()
+    {
+        return $this->morphMany(FlightModel::class, 'flights');
+    }
 }

@@ -15,4 +15,14 @@ class AirportModel extends Model
     }
     public $timestamps = false;
     protected $table = 'airports';
+
+    public function from()
+    {
+        return $this->hasMany(RouteModel::class, 'departure_id', 'id');
+    }
+
+    public function to()
+    {
+        return $this->hasMany(RouteModel::class, 'destination_id', 'id');
+    }
 }

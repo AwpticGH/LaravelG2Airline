@@ -16,18 +16,13 @@ class FlightModel extends Model
     public $timestamps = false;
     protected $table = 'flights';
 
-    public function route()
+    public function flights()
     {
-        return $this->belongsTo(RouteModel::class);
+        return $this->morphTo('flights');
     }
 
-    public function airplane()
+    public function reservations()
     {
-        return $this->hasOne(AirplaneModel::class);
-    }
-
-    public function reserved()
-    {
-        return $this->belongsTo(ReservationModel::class);
+        return $this->morphMany(ReservationModel::class, 'reservations');
     }
 }

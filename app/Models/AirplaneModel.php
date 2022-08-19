@@ -15,4 +15,14 @@ class AirplaneModel extends Model
     }
     public $timestamps = false;
     protected $table = 'airplanes';
+
+    public function airline()
+    {
+        return $this->belongsTo(AirlineModel::class, 'airline_id', 'id');
+    }
+
+    public function flights()
+    {
+        return $this->morphMany(FlightModel::class, 'flights');
+    }
 }

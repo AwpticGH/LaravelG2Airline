@@ -36,4 +36,9 @@ class UserModel extends Authenticatable
     protected $casts = [
         'DateOfBirth' => 'date'
     ];
+
+    public function reservations()
+    {
+        return $this->morphMany(ReservationModel::class, 'reservations');
+    }
 }

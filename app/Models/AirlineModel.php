@@ -15,4 +15,9 @@ class AirlineModel extends Model
     }
     public $timestamps = false;
     protected $table = 'airlines';
+
+    public function airplanes()
+    {
+        return $this->hasMany(AirplaneModel::class, 'airline_id', 'id');
+    }
 }

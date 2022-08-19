@@ -9,4 +9,9 @@ class ReservationInfoModel extends Model
 {
     use HasFactory;
     protected $table = 'reservations_info';
+
+    public function reservation()
+    {
+        return $this->belongsTo(ReservationModel::class, 'reservation_id', 'id');
+    }
 }
