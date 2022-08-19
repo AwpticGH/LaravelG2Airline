@@ -19,6 +19,7 @@ class RouteFactory extends Factory
     public function definition()
     {
         return [
+            'id' => '163',
             'departure_id' => '1',
             'destination_id' => '2',
             'time_of_flight_minutes' => '120',

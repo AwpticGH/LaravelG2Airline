@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use App\Models\AirlineModel;
 use App\Models\AirplaneModel;
 use App\Models\AirportModel;
+use App\Models\FlightModel;
 use App\Models\RouteModel;
 use App\Models\UserModel;
 use Database\Factories\AirportFactory;
@@ -43,5 +44,6 @@ class DatabaseSeeder extends Seeder
             'city' => 'Makassar'
         ]);
         RouteModel::factory()->create();
+        FlightModel::factory()->create();
     }
 }

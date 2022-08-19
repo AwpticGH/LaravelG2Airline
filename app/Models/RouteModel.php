@@ -14,5 +14,6 @@ class RouteModel extends Model
         return RouteFactory::new();
     }
     public $timestamps = false;
+    public $incrementing = false;
     protected $table = 'routes';
 }

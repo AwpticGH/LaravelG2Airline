@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\FlightModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class FlightFactory extends Factory
 {
+    protected $model = FlightModel::class;
     /**
      * Define the model's default state.
      *
@@ -16,8 +18,12 @@ class FlightFactory extends Factory
      */
     public function definition()
     {
+        $date = '2022-08-20';
+        $time = '09:00:00';
         return [
-            //
+            'airplane_id' => '1',
+            'route_id' => '163',
+            'depart_date_time' => $date.' '.$time,
         ];
     }
 }

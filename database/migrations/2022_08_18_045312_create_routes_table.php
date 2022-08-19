@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('routes', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id')->primary();
             $table->foreignIdFor(\App\Models\AirportModel::class, 'departure_id');
             $table->foreignIdFor(\App\Models\AirportModel::class, 'destination_id');
             $table->integer('time_of_flight_minutes');
