@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\UserModel;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -12,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Auth\Events\Registered;
 
 class UserController extends Controller
 {
@@ -190,4 +190,10 @@ class UserController extends Controller
 //    {
 //        //
 //    }
+
+    public function sendEmailVerificationNotification(Request $request)
+    {
+        $request->user()->sendEmailVerificationNotification();
+        return back();
+    }
 }

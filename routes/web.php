@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use \Illuminate\Http\Request;
+use Illuminate\Http\Request;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,8 +55,4 @@ Route::get('/email/verify/{id}/{hash}', function(EmailVerificationRequest $reque
     return redirect('/home');
 })->middleware(['auth', 'signed'])->name('verification.verify');	//signed is a middleware that checks if the user is signed in and has a valid signature
 
-Route::post('/email/get-verification-link', function(Request $request) {
-    $request->user()->sendEmailVerificationNotification();
-
-    return back()->with('message', 'Verification link sent!');
-})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+Route::post('/email/get-verification-link', [UserController::class, 'sendEmailVerificationNotification'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');

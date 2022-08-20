@@ -21,7 +21,7 @@
                         <a href="#wrapper" id="nav-user" name="username">{{ auth()->user()->username }}</a>
                         <input type="hidden" name="accountId" value="">
                         <div id="user-panel">
-                            <form action="verification.send" method="POST">
+                            <form action="/email/get-verification-link" method="POST">
                                 @csrf
                                 <button type="submit">Verify Email</button>
                             </form>
