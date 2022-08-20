@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class UserController extends Controller
 {
@@ -69,7 +70,7 @@ class UserController extends Controller
             $data->phone_number = $request->phoneNumber;
             $success = $data->save();
             if ($success) {
-                event(new Registered($data));
+                event(new Registered($success));
                 return redirect('/login');
             }
             else {
@@ -191,7 +192,7 @@ class UserController extends Controller
 //        //
 //    }
 
-    public function sendEmailVerificationNotification(Request $request)
+    public function sendEmailVerificationNotification(EmailVerificationRequest $request)
     {
         $request->user()->sendEmailVerificationNotification();
         return back();

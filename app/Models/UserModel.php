@@ -36,7 +36,8 @@ class UserModel extends Authenticatable implements MustVerifyEmail
     ];
 
     protected $casts = [
-        'DateOfBirth' => 'date'
+        'date_of_birth' => 'date',
+        'email_verified_at' => 'datetime',
     ];
 
     public function reservations()

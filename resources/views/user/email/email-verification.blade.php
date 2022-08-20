@@ -1,6 +1,8 @@
 @extends('static.email')
 @section('content')
-    <form action="verification.verify" method="get">
+    <form action="{{ route('verification.verify') }}" method="get">
+        <input type="hidden" name="id" value={{ auth()->user()->id }}>
+        @csrf
         <button>Verify</button>
     </form>
 @endsection
