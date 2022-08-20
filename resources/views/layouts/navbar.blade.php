@@ -21,10 +21,16 @@
                         <a href="#wrapper" id="nav-user" name="username">{{ auth()->user()->username }}</a>
                         <input type="hidden" name="accountId" value="">
                         <div id="user-panel">
+                            <form action="verification.send" method="POST">
+                                @csrf
+                                <button type="submit">Verify Email</button>
+                            </form>
                             <form action="/profile" method="GET" onsubmit="">
+                                @csrf
                                 <button type="Submit">Account</button>
                             </form>
                             <form action="Ticket" method="GET">
+                                @csrf
                                 <input type="hidden" name="accountId" value="">
                                 <button type="Submit">Ticket</button>
                             </form>
@@ -33,7 +39,6 @@
                                 @method('POST')
                                 <button type="Submit">Logout</button>
                             </form>
-
                         </div>
                     </li>
                 @else

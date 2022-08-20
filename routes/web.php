@@ -40,5 +40,22 @@ Route::post('login', [\App\Http\Controllers\UserController::class, 'login']);
 Route::post('logout', [\App\Http\Controllers\UserController::class, 'logout']) ->name('logout')-> middleware('auth');
 
 // Profile
-Route::get('profile', [\App\Http\Controllers\UserController::class, 'show'])->name('profile')->middleware('auth');
+Route::get('profile', [\App\Http\Controllers\UserController::class, 'show'])->name('profile')->middleware(['auth', 'verified']);
 Route::post('profile', [\App\Http\Controllers\UserController::class, 'edit']);
+
+// Auth
+Route::get('/email/verify', function() {
+    return view('user.email.email-verification');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function(EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');	//signed is a middleware that checks if the user is signed in and has a valid signature
+
+Route::post('/email/get-verification-link', function(Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');

@@ -42,34 +42,6 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-//    public function store(Request $request)
-//    {
-//        $request->validate([
-//            'name' => 'required',
-//            'username' => 'required',
-//            'email' => 'required|email|unique:users',
-//            'password' => 'required|min:6|max:16',
-//            'passwordConfirmed' => 'required|same:password',
-//            'gender' => 'required',
-//            'title' => 'required',
-//            'phoneNumber' => 'required',
-//            'dateOfBirth' => 'required',
-//        ]);
-//
-//        $data = new UserModel();
-//        $data -> Name = $request -> name;
-//        $data -> Username = $request -> username;
-//        $data -> Email = $request -> email;
-//        $data -> Password = Hash::make($request -> password);
-//        $data -> Gender = $request -> gender;
-//        $data -> Title = $request -> title;
-//        $data -> DateOfBirth = $request -> dateOfBirth;
-//
-//        $success = $data->save();
-//        if ($success) {
-//            return redirect('/login');
-//        }
-//    }
 
     public function store(Request $request)
     {
@@ -97,6 +69,7 @@ class UserController extends Controller
             $data->phone_number = $request->phoneNumber;
             $success = $data->save();
             if ($success) {
+                event(new Registered($data));
                 return redirect('/login');
             }
             else {
