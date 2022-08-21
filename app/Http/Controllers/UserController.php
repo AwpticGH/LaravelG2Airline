@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class UserController extends Controller
@@ -59,32 +62,21 @@ class UserController extends Controller
         ]);
 
         if ($credentials) {
-            $data = new UserModel();
-            $data->Name = $request->name;
-            $data->Username = $request->username;
-            $data->Email = $request->email;
-            $data->Password = Hash::make($request->password);
-            $data->Gender = $request->gender;
-            $data->Title = $request->title;
-            $data->date_of_birth = $request->dateOfBirth;
-            $data->phone_number = $request->phoneNumber;
-            $success = $data->save();
-            if ($success) {
-                event(new Registered($success));
-                return redirect('/login');
-            }
-            else {
-                return back()->withErrors([
-                    'dbError', 'Can not register, please try again later!'
-                ])->withInput([
-                    $request->name,
-                    $request->username,
-                    $request->email,
-                    $request->gender,
-                    $request->title,
-                    $request->dateOfBirth,
-                ]);
-            }
+            $user = UserModel::create([
+                'name' => $request->name,
+                'username' => $request->username,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'gender' => $request->gender,
+                'title' => $request->title,
+                'date_of_birth' => $request->dateOfBirth,
+                'phone_number' => $request->phoneNumber,
+            ]);
+
+            event(new Registered($user));
+
+            Auth::login($user);
+            return redirect(RouteServiceProvider::HOME);
         }
         else {
             return back()->withErrors([
@@ -192,9 +184,27 @@ class UserController extends Controller
 //        //
 //    }
 
-    public function sendEmailVerificationNotification(EmailVerificationRequest $request)
+    public function sendEmailVerificationNotification(Request $request)
     {
+        if ($request->user()->hasVerifiedEmail()) {
+            return back();
+        }
+
         $request->user()->sendEmailVerificationNotification();
-        return back();
+
+        return back()->with('alertSuccess', 'A fresh verification link has been sent to your email address.');
+    }
+
+    public function verifyEmail(EmailVerificationRequest $request)
+    {
+        if ($request->user()->hasVerifiedEmail()) {
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
+
+        if ($request->user()->markEmailAsVerified()) {
+            event(new Verified($request->user()));
+        }
+
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 }

@@ -50,10 +50,6 @@ Route::get('/email/verify', function() {
     return view('user.email.email-verification');
 })->middleware('auth')->name('verification.notice');
 
-Route::get('/email/verify/{id}/{hash}', function(EmailVerificationRequest $request) {
-    $request->fulfill();
-
-    return redirect('/home');
-})->middleware(['auth', 'signed'])->name('verification.verify');	//signed is a middleware that checks if the user is signed in and has a valid signature
+Route::get('/email/verify/{id}/{hash}', [UserController::class, 'verifyEmail'])->middleware(['auth', 'signed'])->name('verification.verify');	//signed is a middleware that checks if the user is signed in and has a valid signature
 
 Route::post('/email/get-verification-link', [UserController::class, 'sendEmailVerificationNotification'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
