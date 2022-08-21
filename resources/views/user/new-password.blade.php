@@ -6,20 +6,21 @@
     <div class="form-body">
         <div class="container">
             <div class="title">
-                Login
+                New Password
             </div>
             <div class="content">
-                <form method="POST" action="password.update">
+                <form method="POST" action="{{ route('password.update') }}">
                     @csrf
                     <input type="hidden" name="token" value="{{ $request->route('token') }}">
+                    <input type="hidden" name="email" value="{{ $request->email }}">
                     <div class="user-details">
                         <div class="input-box">
                             <label for="password" class="details">Password</label>
                             <input type="password" placeholder="Enter your password" id="password" name="password" required>
                         </div>
                         <div class="input-box">
-                            <label for="passwordConfirmed" class="details">Email</label>
-                            <input type="password" placeholder="Confirm Your Password" id="passwordConfirmed" name="passwordConfirmed" required>
+                            <label for="password_confirmation" class="details">Password Confirmation</label>
+                            <input type="password" placeholder="Confirm Your Password" id="password_confirmation" name="password_confirmation" required>
                         </div>
                     </div>
                     <div class="button">
