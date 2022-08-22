@@ -34,38 +34,39 @@
                 </label>
             </div>
         </div>
-        <form action="show" method="GET">
+        <form action="{{ route('flight.show') }}" method="GET">
+            @csrf
             <div class="search-group">
                 <div class="col-2_5 from-to" id="from">
                     <label for="from-city" class="text-gray label-form">From</label><br>
-                    <select name="from-city" aria-placeholder="From City" id="from-city">
+                    <select name="from_city" aria-placeholder="From City" id="from-city">
                         <option value="" disabled>City or Airport</option>
-                        <option value="Tanggerang, Indonesia" class="btn-cities-from">Tanggerang, Indonesia</option>
-                        <option value="Surabaya, Indonesia" class="btn-cities-from">Surabaya, Indonesia</option>
-                        <option value="Medan, Indonesia" class="btn-cities-from">Medan, Indonesia</option>
-                        <option value="Makassar, Indonesia" class="btn-cities-from">Makassar, Indonesia</option>
-                        <option value="Yogyakarta, Indonesia" class="btn-cities-from">Yogyakarta, Indonesia</option>
-                        <option value="Denpasar-Bali, Indonesia" class="btn-cities-from">Denpasar-Bali, Indonesia</option>
-                        <option value="Padang, Indonesia" class="btn-cities-from">Padang, Indonesia</option>
-                        <option value="Palembang, Indonesia" class="btn-cities-from">Palembang, Indonesia</option>
-                        <option value="Banjarmasin, Indonesia" class="btn-cities-from">Banjarmasin, Indonesia</option>
-                        <option value="Pontianak, Indonesia" class="btn-cities-from">Pontianak, Indonesia</option>
+                        <option value="Tanggerang" class="btn-cities-from">Tanggerang, Indonesia</option>
+                        <option value="Surabaya" class="btn-cities-from">Surabaya, Indonesia</option>
+                        <option value="Medan" class="btn-cities-from">Medan, Indonesia</option>
+                        <option value="Makassar" class="btn-cities-from">Makassar, Indonesia</option>
+                        <option value="Yogyakarta" class="btn-cities-from">Yogyakarta, Indonesia</option>
+                        <option value="Denpasar-Bali" class="btn-cities-from">Denpasar-Bali, Indonesia</option>
+                        <option value="Padang" class="btn-cities-from">Padang, Indonesia</option>
+                        <option value="Palembang" class="btn-cities-from">Palembang, Indonesia</option>
+                        <option value="Banjarmasin" class="btn-cities-from">Banjarmasin, Indonesia</option>
+                        <option value="Pontianak" class="btn-cities-from">Pontianak, Indonesia</option>
                     </select>
                 </div>
                 <div class="col-2_5 from-to">
                     <label for="to-city" class="text-gray label-form">To</label><br>
-                    <select name="to-city" aria-placeholder="To City" id="to-city">
+                    <select name="to_city" aria-placeholder="To City" id="to-city">
                         <option value="" disabled>City or Airport</option>
-                        <option value="Tanggerang, Indonesia" class="btn-cities-to">Tanggerang, Indonesia</option>
-                        <option value="Surabaya, Indonesia" class="btn-cities-to">Surabaya, Indonesia</option>
-                        <option value="Medan, Indonesia" class="btn-cities-to">Medan, Indonesia</option>
-                        <option value="Makassar, Indonesia" class="btn-cities-to">Makassar, Indonesia</option>
-                        <option value="Yogyakarta, Indonesia" class="btn-cities-to">Yogyakarta, Indonesia</option>
-                        <option value="Denpasar-Bali, Indonesia" class="btn-cities-to">Denpasar-Bali, Indonesia</option>
-                        <option value="Padang, Indonesia" class="btn-cities-to">Padang, Indonesia</option>
-                        <option value="Palembang, Indonesia" class="btn-cities-to">Palembang, Indonesia</option>
-                        <option value="Banjarmasin, Indonesia" class="btn-cities-to">Banjarmasin, Indonesia</option>
-                        <option value="Pontianak, Indonesia" class="btn-cities-to">Pontianak, Indonesia</option>
+                        <option value="Tanggerang" class="btn-cities-to">Tanggerang, Indonesia</option>
+                        <option value="Surabaya" class="btn-cities-to">Surabaya, Indonesia</option>
+                        <option value="Medan" class="btn-cities-to">Medan, Indonesia</option>
+                        <option value="Makassar" class="btn-cities-to">Makassar, Indonesia</option>
+                        <option value="Yogyakarta" class="btn-cities-to">Yogyakarta, Indonesia</option>
+                        <option value="Denpasar-Bali" class="btn-cities-to">Denpasar-Bali, Indonesia</option>
+                        <option value="Padang" class="btn-cities-to">Padang, Indonesia</option>
+                        <option value="Palembang" class="btn-cities-to">Palembang, Indonesia</option>
+                        <option value="Banjarmasin" class="btn-cities-to">Banjarmasin, Indonesia</option>
+                        <option value="Pontianak" class="btn-cities-to">Pontianak, Indonesia</option>
                     </select>
                 </div>
                 <div class="col-2_25 departure-arrival">

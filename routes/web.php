@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FlightController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -25,9 +26,7 @@ use App\Http\Controllers\Auth\Socialite\GoogleUserController;
 Route::get('/', function () {
     return Auth::viaRemember() ? view('flight.home') : view('flight.home');
 });
-Route::get('show', function() {
-    return view('flight.show');
-});
+Route::get('show', [FlightController::class, 'show'])->name('flight.show');
 
 // Register
 Route::get('register', function() {

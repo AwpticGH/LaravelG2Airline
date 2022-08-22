@@ -22,12 +22,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        UserModel::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@gmail.com',
-            'password' => Hash::make('123123'),
-            'phone_number' => '6281234567890'
-        ]);
+        // UserModel::factory()->create([
+        //     'name' => 'Admin',
+        //     'email' => 'admin@gmail.com',
+        //     'password' => Hash::make('123123'),
+        //     'phone_number' => '6281234567890'
+        // ]);
 
         AirlineModel::factory()->create();
         AirplaneModel::factory()->count(10)->create();

@@ -4,83 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\FlightModel;
 use Illuminate\Http\Request;
+use App\Models\UserModel;
+use App\Models\RouteModel;
+use App\Models\AirportModel;
 
 class FlightController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function show(Request $request)
     {
-        //
-    }
+        $flight = FlightModel::select('')
+                                ->join('routes', 'flights.route_id', '=', 'routes.id')
+                                ->join('airports as ap1', 'routes.departure_id', '=', 'ap1.id')
+                                ->join('airports as ap2', 'routes.destination_id', '=', 'ap2.id')
+                                ->where('ap1.city', $request->from_city)
+                                ->where('ap2.city', $request->to_city)
+                                ->get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\FlightModel  $flightModel
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, FlightModel $flightModel)
-    {
-        $flights = $flightModel::find()
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\FlightModel  $flightModel
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(FlightModel $flightModel)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\FlightModel  $flightModel
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, FlightModel $flightModel)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\FlightModel  $flightModel
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(FlightModel $flightModel)
-    {
-        //
+        dd($flight);
     }
 }

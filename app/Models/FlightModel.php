@@ -5,6 +5,10 @@ namespace App\Models;
 use Database\Factories\FlightFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\RouteModel;
+use App\Models\AirplaneModel;
+use App\Models\ReservationModel;
+use App\Models\AirportModel;
 
 class FlightModel extends Model
 {
@@ -16,13 +20,18 @@ class FlightModel extends Model
     public $timestamps = false;
     protected $table = 'flights';
 
-    public function flights()
+    public function route()
     {
-        return $this->morphTo('flights');
+        return $this->belongsTo(RouteModel::class, 'route_id', 'id');
+    }
+
+    public function airplane()
+    {
+        return $this->belongsTo(AirplaneModel::class, 'airplane_id', 'id');
     }
 
     public function reservations()
     {
-        return $this->morphMany(ReservationModel::class, 'reservations');
+        return $this->hasMany(ReservationModel::class, 'reservation_id', 'id');
     }
 }

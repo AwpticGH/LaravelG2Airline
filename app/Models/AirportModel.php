@@ -25,4 +25,5 @@ class AirportModel extends Model
     {
         return $this->hasMany(RouteModel::class, 'destination_id', 'id');
     }
+
 }

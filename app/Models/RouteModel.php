@@ -29,6 +29,6 @@ class RouteModel extends Model
 
     public function flights()
     {
-        return $this->morphMany(FlightModel::class, 'flights');
+        return $this->hasMany(FlightModel::class, 'route_id', 'id');
     }
 }
