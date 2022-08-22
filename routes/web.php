@@ -7,6 +7,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\Auth\Socialite\GoogleController;
+use App\Http\Controllers\Auth\Socialite\GoogleUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +45,7 @@ Route::post('logout', [\App\Http\Controllers\UserController::class, 'logout']) -
 
 // Profile
 Route::get('profile', [\App\Http\Controllers\UserController::class, 'show'])->name('profile')->middleware(['auth', 'verified']);
-Route::post('profile', [\App\Http\Controllers\UserController::class, 'edit']);
+Route::post('profile', [\App\Http\Controllers\UserController::class, 'edit'])->name('profile');
 
 // Email Verification
 Route::get('/email/verify', function() {
@@ -62,3 +64,9 @@ Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])->n
 // Reset
 Route::get('reset-password/{token}', [PasswordResetController::class, 'create'])->name('password.reset');
 Route::post('reset-password', [PasswordResetController::class, 'store'])->name('password.update');
+
+// Socialite
+Route::get('login/google/redirect', [GoogleController::class, 'create'])->name('google.redirect')->middleware('guest');
+Route::get('login/google/callback', [GoogleController::class, 'store'])->name('google.callback')->middleware('guest');
+Route::get('login/google/profile-completion', [GoogleUserController::class, 'create'])->name('google.profile')->middleware(['auth', 'incomplete.profile']);
+Route::post('login/google/profile-completion', [GoogleUserController::class, 'edit'])->name('google.profile.update');

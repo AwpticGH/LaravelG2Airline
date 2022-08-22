@@ -31,7 +31,7 @@
                         <button class="button-login" type="Submit">Submit</button>
                     </div>
                     <div class="button">
-                        <a href="" class="button-login">Login With Google</a>
+                        <a href="{{ route('google.redirect') }}" class="button-login">Login With Google</a>
                         <a href="{{ route('register') }}" class="button-login">Register Now!</a>
                         <a href="{{ route('password.request') }}" class="button-login">Forgot Password</a>
                     </div>

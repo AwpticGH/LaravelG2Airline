@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\SocialiteModel;
 
 class UserModel extends Authenticatable implements MustVerifyEmail
 {
@@ -29,6 +30,7 @@ class UserModel extends Authenticatable implements MustVerifyEmail
         'title',
         'date_of_birth',
         'phone_number',
+        'email_verified_at',
     ];
 
     protected $hidden = [
@@ -44,5 +46,10 @@ class UserModel extends Authenticatable implements MustVerifyEmail
     public function reservations()
     {
         return $this->morphMany(ReservationModel::class, 'reservations');
+    }
+
+    public function socialite()
+    {
+        return $this->hasOne(SocialiteModel::class, 'user_id', 'id');
     }
 }
