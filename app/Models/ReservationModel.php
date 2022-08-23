@@ -10,6 +10,13 @@ class ReservationModel extends Model
     use HasFactory;
     protected $table = 'reservations';
 
+    protected $fillable = [
+        'user_id',
+        'flight_id',
+        'paid',
+        'active',
+    ];
+
     public function flight()
     {
         return $this->morphTo('reservations');

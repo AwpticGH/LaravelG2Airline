@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(\App\Models\UserModel::class, 'user_id');
             $table->boolean('paid');
             $table->boolean('active');
+            $table->timestampsTz();
         });
     }
 

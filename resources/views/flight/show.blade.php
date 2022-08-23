@@ -29,11 +29,12 @@
     </div>
     <!-- panel - result -->
     @foreach($flights as $flight)
-        <form action="">
+        <form method="get" action="{{ route('reservation.create') }}">
+            @csrf
             <input name="accountId" type="hidden" value="">
-            <input name="flightId" type="hidden" value="">
-            <input name="passengerCount" type="hidden" value="">
-            <input name="seatClass" type="hidden" value="">
+            <input name="flight_id" type="hidden" value="{{ $flight->id }}">
+            <input name="passenger_count" type="hidden" value="{{ '2' }}">
+            <input name="seat_class" type="hidden" value="{{ 'Economy' }}">
             <div id="result">
                 <div class="panel result shadowed" onclick="clickedResult1(), extendResult1()">
                     <div class="col-4">

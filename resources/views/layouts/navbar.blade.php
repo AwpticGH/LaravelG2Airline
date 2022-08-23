@@ -29,7 +29,7 @@
                                 @csrf
                                 <button type="Submit">Account</button>
                             </form>
-                            <form action="Ticket" method="GET">
+                            <form action="{{ route('reservation.show') }}" method="GET">
                                 @csrf
                                 <input type="hidden" name="accountId" value="">
                                 <button type="Submit">Ticket</button>

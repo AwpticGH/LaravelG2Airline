@@ -23,10 +23,13 @@ use App\Http\Controllers\Auth\Socialite\GoogleUserController;
 */
 
 // Flights
-Route::get('/', function () {
-    return Auth::viaRemember() ? view('flight.home') : view('flight.home');
-});
+Route::get('/', 'App\Http\Controllers\FlightController@create');
 Route::get('show', [FlightController::class, 'show'])->name('flight.show');
+
+// Reservations
+Route::get('/reservation', 'App\Http\Controllers\ReservationController@create')->name('reservation.create');
+Route::post('/reservation', 'App\Http\Controllers\ReservationController@store')->name('reservation.store');
+Route::get('/reservation/get', 'App\Http\Controllers\ReservationController@show')->name('reservation.show');
 
 // Register
 Route::get('register', function() {
